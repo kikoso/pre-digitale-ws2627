@@ -22,4 +22,6 @@ data class Customer(val name: String, val city: City, val orders: List<Order>) {
 
 data class Shop(val name: String, val customers: List<Customer>)
 
-fun Shop.getSetOfCustomers(): Set<Customer> = TODO()
+fun Shop.getSetOfCustomers(): Set<Customer> = customers.toSet()
+
+fun Shop.getAllOrders() : Set<Order> = customers.flatMap { it.orders }.toSet()
