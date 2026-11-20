@@ -2,8 +2,8 @@ package org.example
 
 fun eval (expr: Expr): Int =
     when (expr) {
-        is Num -> //TODO
-        is Sum -> //TODO
+        is Num -> expr.value
+        is Sum -> eval(expr.left) + eval(expr.right)
         else -> throw IllegalArgumentException("Unknown Exception")
     }
 
@@ -11,3 +11,11 @@ fun eval (expr: Expr): Int =
 interface Expr
 class Num(val value: Int) : Expr
 class Sum(val left: Expr, val right: Expr) : Expr
+
+fun main() {
+    println(eval(Sum(
+        Num(1),
+
+        Sum(Num(1), Num(2)),
+    )))
+}
